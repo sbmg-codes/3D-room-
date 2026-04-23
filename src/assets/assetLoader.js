@@ -8,10 +8,17 @@ export class AssetLoader {
   }
 
   async loadRoom() {
-    try {
-      this.model = await this.loader.loadAsync(this.modelPath);
-    } catch (err) {
-      console.error(err);
-    }
+    return new Promise((resolve, reject) => {
+      this.loader.load(
+        "/models/room.glb",
+        (gltf) => {
+          resolve(gltf.scene);
+        },
+        (xhr) => {
+          console.log();
+        },
+        reject,
+      );
+    });
   }
 }
