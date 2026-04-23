@@ -5,7 +5,6 @@ export class AssetLoader {
     this.loader = new GLTFLoader();
     this.modelPath = "/models/room.glb";
     this.model = null;
-    this.loadRoom();
   }
 
   async loadRoom() {

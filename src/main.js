@@ -1,9 +1,9 @@
 import { AssetLoader } from "./assets/assetLoader";
-import { SceneManager } from "./Scene.js";
+import { RoomScene } from "./Scene.js";
 
 class Application {
   constructor() {
-    this.sceneManager = new SceneManager();
+    this.sceneManager = new RoomScene();
     this.assetLoader = new AssetLoader();
   }
 }

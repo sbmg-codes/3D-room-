@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export class SceneManager {
+export class RoomScene {
   constructor() {
     this.scene = new THREE.Scene();
   }
