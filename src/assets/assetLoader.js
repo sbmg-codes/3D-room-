@@ -12,6 +12,12 @@ export class AssetLoader {
       this.loader.load(
         "/models/room.glb",
         (gltf) => {
+          gltf.scene.traverse((child) => {
+            if (child.isMesh) {
+              child.receiveShadow = true;
+              child.castShadow = true;
+            }
+          });
           resolve(gltf.scene);
         },
         (xhr) => {
