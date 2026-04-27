@@ -1,3 +1,4 @@
+// RendererManager.js
 import * as THREE from "three";
 
 export class RendererManager {
@@ -8,23 +9,22 @@ export class RendererManager {
     this.scene = scene;
     this.camera = camera;
     this.zeroMargins();
+
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.setPixelRatio(devicePixelRatio);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // soft edges
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1;
-    this.renderer.physicallyCorrectLights = true;
+    // removed: physicallyCorrectLights (deprecated)
+    // removed: renderer.shadowMap.mapSize (must be set per-light)
 
-    window.addEventListener("resize", () => {
-      this.onResize();
-    });
+    window.addEventListener("resize", () => this.onResize());
   }
 
   onResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
-
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   }
