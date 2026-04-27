@@ -13,8 +13,9 @@ export class LightManager {
   }
 
   threeLightSetup() {
-    const mainLight = new DirectionalLight(0xffff5e6, 2.5);
-    mainLight.position.set(5, 8, 5);
+    const mainLight = new DirectionalLight(0xffff5e6, 3.5);
+    mainLight.position.set(0, 10, 0);
+    mainLight.lookAt(0, 0, 0);
     mainLight.castShadow = true;
     mainLight.shadow.mapSize.width = 2048;
     mainLight.shadow.mapSize.height = 2048;
