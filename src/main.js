@@ -5,6 +5,7 @@ import { RendererManager } from "./Renderer.js";
 import { RoomScene } from "./Scene.js";
 import { LightManager } from "./Lights.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { GUIManager } from "./Debug.js";
 
 class Application {
   constructor() {
@@ -21,6 +22,7 @@ class Application {
       this.cameraManager.camera,
       this.rendererManager?.renderer.domElement,
     );
+    this.debug = new GUIManager();
 
     this.addCube();
     this.init();
