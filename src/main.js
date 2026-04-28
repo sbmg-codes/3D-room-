@@ -22,22 +22,29 @@ class Application {
       this.rendererManager?.renderer.domElement,
     );
     this.debugPanel = new GUIManager();
+    this.lightAxes = null;
+    this.cameraAxes = null;
 
     this.lightManager = new LightManager(
       this.sceneManager.scene,
       this.debugPanel,
     );
 
-    this.addCube();
     this.init();
   }
 
-  init() {
-    this.load();
-    this.lightManager.threeLightSetup();
-  }
+  async init() {
+    await this.load();
+    this.lightAxes = this.assetLoader.lightAxes;
+    this.cameraAxes = this.assetLoader.cameraAxes;
+    this.cameraManager.camera.position.set(
+      this.cameraAxes.position.x,
+      this.cameraAxes.position.y,
+      this.cameraAxes.position.z,
+    );
 
-  addCube() {}
+    this.lightManager.threeLightSetup(this.lightAxes);
+  }
 
   async load() {
     const model = await this.assetLoader.loadRoom();

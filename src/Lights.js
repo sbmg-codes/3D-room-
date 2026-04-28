@@ -13,7 +13,7 @@ export class LightManager {
     this.debug = debug;
   }
 
-  threeLightSetup() {
+  threeLightSetup(lightAxes) {
     const mainLight = new DirectionalLight("ee778f", 2.7);
     mainLight.position.set(-1.1, 10, 0);
     mainLight.lookAt(0, 0, 0);
@@ -35,12 +35,14 @@ export class LightManager {
 
     this.scene.add(mainLight);
 
+    const fill = lightAxes[1];
     const fillLight = new DirectionalLight(0xd0e7ff, 0.8);
-    fillLight.position.set(-4, 4, 3);
+    fillLight.position.set(fill.position.x, fill.position.y, fill.position.z);
     this.scene.add(fillLight);
 
+    const rim = lightAxes[2];
     const rimLight = new DirectionalLight(0xffd0a0, 0.5);
-    rimLight.position.set(-2, 6, -8);
+    rimLight.position.set(rim.position.x, rim.position.y, rim.position.z);
     this.lights.rim = rimLight;
     this.scene.add(rimLight);
 
