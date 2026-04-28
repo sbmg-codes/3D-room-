@@ -1,10 +1,13 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { lights } from "three/tsl";
 
 export class AssetLoader {
   constructor() {
     this.loader = new GLTFLoader();
     this.modelPath = "/models/room.glb";
     this.model = null;
+    this.lightAxes = [];
+    this.cameraAxes = null;
   }
 
   async loadRoom() {
@@ -13,6 +16,8 @@ export class AssetLoader {
         "/models/room.glb",
         (gltf) => {
           gltf.scene.traverse((child) => {
+            this.filterLights(child);
+            this.filterCamera(child);
             if (child.isMesh) {
               child.receiveShadow = true;
               child.castShadow = true;
@@ -26,5 +31,17 @@ export class AssetLoader {
         reject,
       );
     });
+  }
+
+  filterLights(child) {
+    if (child.name.includes("LIGHT")) {
+      this.lightAxes.push(child);
+    }
+  }
+
+  filterCamera(child) {
+    if (child.name === "camera_axes") {
+      this.cameraAxes = child;
+    }
   }
 }
