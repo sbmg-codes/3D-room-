@@ -44,7 +44,7 @@ export class LightManager {
     this.lights.rim = rimLight;
     this.scene.add(rimLight);
 
-    const ambientLight = new AmbientLight(0xfff5e6, 0.3);
+    const ambientLight = new AmbientLight("f2daba", 0.3);
     this.lights.ambient = ambientLight;
     this.scene.add(ambientLight);
 
