@@ -6,6 +6,7 @@ import { RoomScene } from "./Scene.js";
 import { LightManager } from "./Lights.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GUIManager } from "./Debug.js";
+import { Robot } from "./Robot.js";
 
 class Application {
   constructor() {
@@ -42,6 +43,7 @@ class Application {
       this.cameraAxes.position.y,
       this.cameraAxes.position.z,
     );
+    this.robot = new Robot(this.assetLoader.robot);
 
     this.lightManager.threeLightSetup(this.lightAxes);
   }
