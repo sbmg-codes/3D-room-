@@ -14,8 +14,8 @@ export class LightManager {
   }
 
   threeLightSetup() {
-    const mainLight = new DirectionalLight(0xffff5e6, 3.5);
-    mainLight.position.set(0, 10, 0);
+    const mainLight = new DirectionalLight("ee778f", 2.7);
+    mainLight.position.set(-1.1, 10, 0);
     mainLight.lookAt(0, 0, 0);
     mainLight.castShadow = true;
     mainLight.shadow.mapSize.width = 2048;
@@ -49,5 +49,34 @@ export class LightManager {
     this.scene.add(ambientLight);
 
     this.debug.gui.addFolder("Lights");
+
+    if (this.debug) {
+      const lightsFolder = this.debug.gui.addFolder("Lights");
+
+      // Main light
+      const mainFolder = lightsFolder.addFolder("Main");
+      mainFolder.add(mainLight, "intensity", 0, 10, 0.1).name("Intensity");
+      mainFolder.addColor(mainLight, "color").name("Color");
+      mainFolder.add(mainLight.position, "x", -10, 10, 0.1).name("X");
+      mainFolder.add(mainLight.position, "y", -10, 10, 0.1).name("Y");
+      mainFolder.add(mainLight.position, "z", -10, 10, 0.1).name("Z");
+
+      // Fill light
+      const fillFolder = lightsFolder.addFolder("Fill");
+      fillFolder.add(fillLight, "intensity", 0, 5, 0.1).name("Intensity");
+      fillFolder.addColor(fillLight, "color").name("Color");
+
+      // Rim light
+      const rimFolder = lightsFolder.addFolder("Rim");
+      rimFolder.add(rimLight, "intensity", 0, 5, 0.1).name("Intensity");
+      rimFolder.addColor(rimLight, "color").name("Color");
+
+      // Ambient light
+      const ambientFolder = lightsFolder.addFolder("Ambient");
+      ambientFolder
+        .add(ambientLight, "intensity", 0, 2, 0.01)
+        .name("Intensity");
+      ambientFolder.addColor(ambientLight, "color").name("Color");
+    }
   }
 }

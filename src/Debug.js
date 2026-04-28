@@ -12,8 +12,7 @@ export class GUIManager {
     }
   }
 
-  add(object, prop, min, max, step, folderName) {
-    const folder = this.createFolder(folderName);
+  add(object, prop, min, max, step, folder) {
     return folder.add(object, prop, min, max, step);
   }
 }
