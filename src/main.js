@@ -17,7 +17,6 @@ class Application {
       this.sceneManager.scene,
       this.cameraManager.camera,
     );
-    this.cameraManager.camera.position.set(0, 2, 50);
     this.orbit = new OrbitControls(
       this.cameraManager.camera,
       this.rendererManager?.renderer.domElement,
