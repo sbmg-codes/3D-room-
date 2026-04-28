@@ -9,5 +9,7 @@ export class CameraManager {
       1000,
     );
     this.camera.lookAt(0, 0, 0);
+    this.camera.fov = 60;
+    this.camera.updateProjectionMatrix();
   }
 }
