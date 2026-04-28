@@ -6,10 +6,11 @@ import {
 } from "three";
 
 export class LightManager {
-  constructor(scene) {
+  constructor(scene, debug) {
     this.scene = scene;
     this.lights = {};
-    this.threeLightSetup();
+
+    this.debug = debug;
   }
 
   threeLightSetup() {
@@ -46,5 +47,7 @@ export class LightManager {
     const ambientLight = new AmbientLight(0xfff5e6, 0.3);
     this.lights.ambient = ambientLight;
     this.scene.add(ambientLight);
+
+    this.debug.gui.addFolder("Lights");
   }
 }

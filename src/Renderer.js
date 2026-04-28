@@ -13,11 +13,9 @@ export class RendererManager {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // soft edges
+    this.renderer.shadowMap.type = THREE.PCFShadowMap; // soft edges
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1;
-    // removed: physicallyCorrectLights (deprecated)
-    // removed: renderer.shadowMap.mapSize (must be set per-light)
 
     window.addEventListener("resize", () => this.onResize());
   }

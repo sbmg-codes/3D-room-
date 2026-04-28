@@ -17,12 +17,16 @@ class Application {
       this.cameraManager.camera,
     );
     this.cameraManager.camera.position.set(0, 2, 50);
-    this.lightManager = new LightManager(this.sceneManager.scene);
     this.orbit = new OrbitControls(
       this.cameraManager.camera,
       this.rendererManager?.renderer.domElement,
     );
-    this.debug = new GUIManager();
+    this.debugPanel = new GUIManager();
+
+    this.lightManager = new LightManager(
+      this.sceneManager.scene,
+      this.debugPanel,
+    );
 
     this.addCube();
     this.init();
@@ -30,6 +34,7 @@ class Application {
 
   init() {
     this.load();
+    this.lightManager.threeLightSetup();
   }
 
   addCube() {}

@@ -8,9 +8,8 @@ export class GUIManager {
 
   createFolder(name) {
     if (!this.folders[name]) {
-      this.folders[name] = this.gui.addFolder(name);
+      this.gui.addFolder(name);
     }
-    return this.folders[name];
   }
 
   add(object, prop, min, max, step, folderName) {
