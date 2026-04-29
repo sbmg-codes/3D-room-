@@ -1,4 +1,4 @@
-import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
+import { BoxGeometry, Clock, Mesh, MeshBasicMaterial } from "three";
 import { AssetLoader } from "./assets/assetLoader";
 import { CameraManager } from "./Camera.js";
 import { RendererManager } from "./Renderer.js";
@@ -29,6 +29,7 @@ class Application {
       this.sceneManager.scene,
       this.debugPanel,
     );
+    this.clock = new Clock();
 
     this.init();
   }
@@ -42,7 +43,11 @@ class Application {
       this.cameraAxes.position.y,
       this.cameraAxes.position.z,
     );
-    this.robot = new Robot(this.assetLoader.robot);
+    this.robot = new Robot(
+      this.assetLoader.gltf.animations[0],
+      this.assetLoader.robotEyes,
+    );
+    this.robot.playAnimation();
 
     this.lightManager.threeLightSetup(this.lightAxes);
   }
@@ -58,8 +63,10 @@ class Application {
   }
 
   animate() {
+    const delta = this.clock.getDelta();
     requestAnimationFrame(() => {
       this.animate();
+      this.robot.animationMixer.update(delta);
     });
     this.orbit.update();
     this.rendererManager.renderScene();
