@@ -9,6 +9,7 @@ export class AssetLoader {
     this.lightAxes = [];
     this.cameraAxes = null;
     this.robotEyes = null;
+    this.pianoAxes = null;
   }
 
   async loadRoom() {
@@ -18,6 +19,7 @@ export class AssetLoader {
         (gltf) => {
           this.gltf = gltf;
           this.filterRobot(gltf.scene);
+          this.filterPianoAxes(gltf.scene);
           gltf.scene.traverse((child) => {
             this.filterLights(child);
             this.filterCamera(child);
@@ -52,5 +54,9 @@ export class AssetLoader {
     this.robotBody = model.getObjectByName("robot_body");
     this.robotEyes = model.getObjectByName("robot_eyes");
     this.robotScreen = model.getObjectByName("robot_screen");
+  }
+
+  filterPianoAxes(model) {
+    this.pianoAxes = model.getObjectByName("piano_facing_axes");
   }
 }

@@ -1,6 +1,7 @@
 export class Piano {
-  constructor() {
-    this.pianoKeys = [];
-    this.pianoBody = null;
+  constructor(pianoBody, pianoKeys) {
+    this.pianoKeys = pianoKeys;
+    this.pianoBody = pianoBody;
+    this.isPianoClicked = false;
   }
 }
