@@ -66,7 +66,7 @@ class Application {
     const delta = this.clock.getDelta();
     requestAnimationFrame(() => {
       this.animate();
-      this.robot.animationMixer.update(delta);
+      this.robot.animationMixer?.update(delta);
     });
     this.orbit.update();
     this.rendererManager.renderScene();
