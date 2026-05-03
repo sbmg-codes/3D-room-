@@ -7,6 +7,7 @@ import { LightManager } from "./Lights.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GUIManager } from "./Debug.js";
 import { Robot } from "./Robot.js";
+import { RaycastCameraController } from "./RaycastCameraController.js";
 
 class Application {
   constructor() {
@@ -50,6 +51,11 @@ class Application {
     this.robot.playAnimation();
 
     this.lightManager.threeLightSetup(this.lightAxes);
+
+    const raycastController = new RaycastCameraController(
+      this.cameraManager.camera,
+      this.sceneManager.scene,
+    );
   }
 
   async load() {
