@@ -53,7 +53,7 @@ class Application {
     this.lightManager.threeLightSetup(this.lightAxes);
 
     const raycastController = new RaycastCameraController(
-      this.cameraManager.camera,
+      this.cameraManager,
       this.sceneManager.scene,
     );
   }
@@ -75,6 +75,7 @@ class Application {
       this.robot.animationMixer?.update(delta);
     });
     this.orbit.update();
+    this.cameraManager.update(delta);
     this.rendererManager.renderScene();
   }
 }
