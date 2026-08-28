@@ -21,43 +21,22 @@ export class CameraManager {
     this.startLook = new THREE.Vector3();
     this.endLook = new THREE.Vector3();
     this.tempLook = new THREE.Vector3();
+
+    this.currentCameraPosition = new THREE.Vector3();
   }
 
-  moveTo(targetAxes) {
+  moveTo(targetAxes, object) {
     this.isMoving = true;
-    this.moveProgress = 0;
-
-    this.startPos.copy(this.camera.position);
-
-    this.camera.getWorldDirection(this.startLook);
-    this.startLook.multiplyScalar(5).add(this.camera.position);
-
-    const camOffset = new THREE.Vector3(1, 3, 3);
-    camOffset.applyQuaternion(targetAxes.quaternion);
-
-    this.endPos.copy(targetAxes.position).add(camOffset);
-
-    const forward = new THREE.Vector3(0, 0, -5);
-    forward.applyQuaternion(targetAxes.quaternion);
-
-    this.endLook.copy(targetAxes.position).add(forward);
+    this.endPos.copy(targetAxes.position);
   }
   update(delta) {
     if (!this.isMoving) return;
 
-    this.moveProgress += delta * 1.2;
+    this.camera.position.lerp(this.endPos, 0.8);
 
-    if (this.moveProgress >= 1) {
-      this.moveProgress = 1;
+    if (this.camera.position.distanceTo(this.endPos) < 0.1) {
+      this.camera.position.copy(this.endPos);
       this.isMoving = false;
     }
-
-    const t =
-      this.moveProgress * this.moveProgress * (3 - 2 * this.moveProgress);
-
-    this.camera.position.lerpVectors(this.startPos, this.endPos, t);
-
-    this.tempLook.lerpVectors(this.startLook, this.endLook, t);
-    this.camera.lookAt(this.tempLook);
   }
 }
