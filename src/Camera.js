@@ -11,7 +11,7 @@ export class CameraManager {
       0.1,
       1000,
     );
-    this.camera.lookAt(0, 0, 0);
+    this.camera.lookAt(1, 1, 1);
     this.camera.fov = 70;
     this.camera.updateProjectionMatrix();
 
@@ -22,24 +22,10 @@ export class CameraManager {
     this.endPos = new THREE.Vector3();
 
     this.currentCameraPosition = new THREE.Vector3();
+
+    // where the camera should look while/after moving
+    this.target = new THREE.Vector3();
   }
 
-  moveTo(targetAxes, object) {
-    this.isMoving = true;
-    this.endPos.set(-1, 8, 0);
-
-    this.camera.lookAt(object.position);
-    console.log(object.position, "This is piano position");
-  }
-
-  update(delta) {
-    if (!this.isMoving) return;
-
-    this.camera.position.lerp(this.endPos, 0.8);
-
-    if (this.camera.position.distanceTo(this.endPos) < 0.1) {
-      this.camera.position.copy(this.endPos);
-      this.isMoving = false;
-    }
-  }
+  moveTo(object) {}
 }
