@@ -1,7 +1,4 @@
-import GUI from "lil-gui";
-import { GUIManager } from "./Debug";
 import * as THREE from "three";
-import { Vector3 } from "three/webgpu";
 
 export class CameraManager {
   constructor() {
@@ -23,9 +20,31 @@ export class CameraManager {
 
     this.currentCameraPosition = new THREE.Vector3();
 
-    // where the camera should look while/after moving
-    this.target = new THREE.Vector3();
+    // the camtarget (the synth / piano)
+    this.target = undefined;
   }
 
-  moveTo(object) {}
+  moveTo(object) {
+    this.isMoving = true;
+
+    this.startPos.copy(this.camera.position);
+    this.endPos.set(-1, 6, 0);
+
+    object.getWorldPosition(this.target);
+  }
+
+  update() {
+    if (!this.isMoving) return;
+
+    this.camera.position.lerp(this.endPos, 0.1);
+
+    // Keep looking at the target while moving
+    this.camera.lookAt(this.target);
+
+    if (this.camera.position.distanceTo(this.endPos) < 0.1) {
+      this.camera.position.copy(this.endPos);
+      this.camera.lookAt(this.target);
+      this.isMoving = false;
+    }
+  }
 }
