@@ -31,7 +31,7 @@ export class RaycastCameraController {
         if (intersect.object.name === "piano_body") {
           const axes = this.scene.getObjectByName("piano_facing_axes");
 
-          this.camera.moveTo(axes, intersects.object);
+          this.camera.moveTo(axes, intersect.object);
         }
       });
     }

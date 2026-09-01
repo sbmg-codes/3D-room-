@@ -1,4 +1,7 @@
+import GUI from "lil-gui";
+import { GUIManager } from "./Debug";
 import * as THREE from "three";
+import { Vector3 } from "three/webgpu";
 
 export class CameraManager {
   constructor() {
@@ -18,17 +21,17 @@ export class CameraManager {
     this.startPos = new THREE.Vector3();
     this.endPos = new THREE.Vector3();
 
-    this.startLook = new THREE.Vector3();
-    this.endLook = new THREE.Vector3();
-    this.tempLook = new THREE.Vector3();
-
     this.currentCameraPosition = new THREE.Vector3();
   }
 
   moveTo(targetAxes, object) {
     this.isMoving = true;
-    this.endPos.copy(targetAxes.position);
+    this.endPos.set(-1, 8, 0);
+
+    this.camera.lookAt(object.position);
+    console.log(object.position, "This is piano position");
   }
+
   update(delta) {
     if (!this.isMoving) return;
 
