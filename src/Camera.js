@@ -26,7 +26,7 @@ export class CameraManager {
     this.isMoving = true;
 
     this.startPos.copy(this.camera.position);
-    this.endPos.set(-1, 6, 0);
+    this.endPos.set(1, 6, 0);
     this.target.copy(object.position);
   }
 
@@ -35,15 +35,10 @@ export class CameraManager {
 
     this.camera.position.lerp(this.endPos, 0.1);
 
-    console.log("LOOKING AT:", this.target);
-    console.log("CAMERA POS:", this.camera.position);
-
     this.camera.lookAt(this.target);
 
     if (this.camera.position.distanceTo(this.endPos) < 0.1) {
       this.camera.position.copy(this.endPos);
-
-      console.log("FINAL LOOK AT:", this.target);
 
       this.camera.lookAt(this.target);
 
