@@ -43,6 +43,7 @@ export class CameraManager {
       this.camera.lookAt(this.target);
 
       this.isMoving = false;
+      this.finishedMoving = true;
     }
   }
 }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 export class RaycastCameraController {
-  constructor(camera, scene) {
+  constructor(camera, scene, orbit) {
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.camera = camera;

@@ -75,6 +75,11 @@ class Application {
       this.robot.animationMixer?.update(delta);
     });
 
+    if (this.cameraManager.finishedMoving) {
+      this.orbit.target.copy(this.cameraManager.target);
+      this.cameraManager.finishedMoving = false;
+    }
+
     this.cameraManager.update(delta);
     this.rendererManager.renderScene();
   }
@@ -82,4 +87,3 @@ class Application {
 
 const app = new Application();
 app.animate();
-// app.load();
