@@ -8,6 +8,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GUIManager } from "./Debug.js";
 import { Robot } from "./Robot.js";
 import { RaycastCameraController } from "./RaycastCameraController.js";
+import { Piano } from "./Piano.js";
 
 class Application {
   constructor() {
@@ -49,12 +50,15 @@ class Application {
       this.assetLoader.robotEyes,
     );
     this.robot.playAnimation();
+    this.piano = new Piano(this.sceneManager.scene);
 
     this.lightManager.threeLightSetup(this.lightAxes);
 
     const raycastController = new RaycastCameraController(
       this.cameraManager,
       this.sceneManager.scene,
+      "",
+      this.piano,
     );
   }
 

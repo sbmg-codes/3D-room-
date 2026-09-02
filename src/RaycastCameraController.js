@@ -1,11 +1,12 @@
 import * as THREE from "three";
 
 export class RaycastCameraController {
-  constructor(camera, scene, orbit) {
+  constructor(camera, scene, orbit, piano) {
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.camera = camera;
     this.scene = scene;
+    this.piano = piano;
 
     window.addEventListener("pointerdown", (event) => {
       this.onPointerDown(event);
@@ -30,8 +31,11 @@ export class RaycastCameraController {
       intersects.forEach((intersect) => {
         if (intersect.object.name === "piano_body") {
           const axes = this.scene.getObjectByName("piano_facing_axes");
-
           this.camera.moveTo(intersect.object);
+        }
+        if (this.piano.keyMeshes.includes(intersect.object)) {
+          this.piano.playPianoSound(intersect.object.name);
+          this.piano.playPianoAnimation(intersect.object.name);
         }
       });
     }
