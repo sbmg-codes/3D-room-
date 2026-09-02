@@ -9,6 +9,7 @@ export class Robot {
 
   playAnimation() {
     const action = this.animationMixer.clipAction(this.animation);
+    this.animationMixer.timeScale = 0.5;
     action.play();
   }
 }
