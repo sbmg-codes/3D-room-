@@ -74,7 +74,7 @@ class Application {
       this.animate();
       this.robot.animationMixer?.update(delta);
     });
-    this.orbit.update();
+
     this.cameraManager.update(delta);
     this.rendererManager.renderScene();
   }
