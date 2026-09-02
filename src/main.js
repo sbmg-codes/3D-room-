@@ -9,6 +9,15 @@ import { GUIManager } from "./Debug.js";
 import { Robot } from "./Robot.js";
 import { RaycastCameraController } from "./RaycastCameraController.js";
 import { Piano } from "./Piano.js";
+import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
+
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(window.innerWidth, window.innerHeight);
+labelRenderer.domElement.style.position = "absolute";
+labelRenderer.domElement.style.top = "0px";
+labelRenderer.domElement.style.pointerEvents = "none";
+
+document.body.appendChild(labelRenderer.domElement);
 
 class Application {
   constructor() {
@@ -48,6 +57,7 @@ class Application {
     this.robot = new Robot(
       this.assetLoader.gltf.animations[0],
       this.assetLoader.robotEyes,
+      this.assetLoader.robotBody,
     );
     this.robot.playAnimation();
     this.piano = new Piano(this.sceneManager.scene);
@@ -66,7 +76,6 @@ class Application {
     const model = await this.assetLoader.loadRoom();
 
     this.sceneManager.scene.add(model);
-
     model.scale.set(1, 1, 1);
 
     return model;
@@ -86,6 +95,7 @@ class Application {
 
     this.cameraManager.update(delta);
     this.rendererManager.renderScene();
+    labelRenderer.render(this.sceneManager.scene, this.cameraManager.camera);
   }
 }
 

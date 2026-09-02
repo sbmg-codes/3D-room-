@@ -30,12 +30,15 @@ export class RaycastCameraController {
     if (intersects.length > 0) {
       intersects.forEach((intersect) => {
         if (intersect.object.name === "piano_body") {
-          const axes = this.scene.getObjectByName("piano_facing_axes");
           this.camera.moveTo(intersect.object);
         }
         if (this.piano.keyMeshes.includes(intersect.object)) {
           this.piano.playPianoSound(intersect.object.name);
           this.piano.playPianoAnimation(intersect.object.name);
+        }
+
+        if (intersect.object.name === "robot_body") {
+          this.camera.moveTo(intersect.object);
         }
       });
     }

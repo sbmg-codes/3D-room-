@@ -22,7 +22,7 @@ export class CameraManager {
     this.target = new THREE.Vector3();
   }
 
-  moveTo(object) {
+  moveTo(object, endPos) {
     this.isMoving = true;
 
     this.startPos.copy(this.camera.position);
