@@ -59,6 +59,10 @@ export class RaycastCameraController {
           this.camera.moveTo(intersect.object);
           this.robot.showMessage();
         }
+
+        if (intersect.object.name === "screen") {
+          this.camera.moveTo(intersect.object, new THREE.Vector3(0, 1, 1));
+        }
       });
     }
   }

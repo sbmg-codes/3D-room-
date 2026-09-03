@@ -10,6 +10,7 @@ import { Robot } from "./Robot.js";
 import { RaycastCameraController } from "./RaycastCameraController.js";
 import { Piano } from "./Piano.js";
 import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer.js";
+import { Monitor } from "./Monitor.js";
 
 const labelRenderer = new CSS2DRenderer();
 labelRenderer.setSize(window.innerWidth, window.innerHeight);
@@ -62,6 +63,7 @@ class Application {
     this.piano = new Piano(this.sceneManager.scene);
 
     this.lightManager.threeLightSetup(this.lightAxes);
+    this.monitor = new Monitor(this.sceneManager.scene);
 
     const raycastController = new RaycastCameraController(
       this.cameraManager,
@@ -69,6 +71,7 @@ class Application {
       "",
       this.piano,
       this.robot,
+      this.monitor.screen,
     );
   }
 

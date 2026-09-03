@@ -4,7 +4,7 @@ import { lights, mod, modelDirection } from "three/tsl";
 export class AssetLoader {
   constructor() {
     this.loader = new GLTFLoader();
-    this.modelPath = "/models/ROOM.glb";
+    this.modelPath = "/models/ROOM1.glb";
     this.gltf = null;
     this.lightAxes = [];
     this.cameraAxes = null;
