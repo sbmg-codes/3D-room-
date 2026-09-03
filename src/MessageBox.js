@@ -56,6 +56,7 @@ export class MessageBox {
   }
 
   show() {
+    this.element.style.visibility = "visible";
     this.element.style.opacity = 1;
     this.btnsParent.style.opacity = 1;
   }
@@ -63,5 +64,6 @@ export class MessageBox {
   hide() {
     this.element.style.opacity = 0;
     this.btnsParent.style.opacity = 0;
+    this.element.style.visibility = "hidden";
   }
 }

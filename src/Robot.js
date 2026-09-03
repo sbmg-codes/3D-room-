@@ -8,7 +8,13 @@ export class Robot {
     this.model = model;
     this.body = body;
     this.animationMixer = new THREE.AnimationMixer(model);
-    this.showMessage();
+    this.messageBox = new MessageBox([
+      "Hello, welcome here",
+      "I'm your assistant robot",
+      "Hope you enjoy the site!",
+    ]);
+    this.messageBox.attachTo(this.body);
+    this.messageBox.hide();
   }
   playAnimation() {
     const action = this.animationMixer.clipAction(this.animation);
@@ -17,12 +23,10 @@ export class Robot {
   }
 
   showMessage() {
-    this.messageBox = new MessageBox([
-      "Hello, welcome here",
-      "I'm your assistant robot",
-      "Hope you enjoy the site!",
-    ]);
-    this.messageBox.attachTo(this.body);
     this.messageBox.show();
+  }
+
+  hideMessage() {
+    this.messageBox.hide();
   }
 }

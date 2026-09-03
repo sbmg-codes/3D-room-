@@ -69,6 +69,7 @@ class Application {
       this.sceneManager.scene,
       "",
       this.piano,
+      this.robot,
     );
   }
 
@@ -85,7 +86,7 @@ class Application {
     const delta = this.clock.getDelta();
     requestAnimationFrame(() => {
       this.animate();
-      this.robot.animationMixer?.update(delta);
+      this.robot?.animationMixer?.update(delta);
     });
 
     if (this.cameraManager.finishedMoving) {
