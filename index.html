@@ -7,7 +7,24 @@
     <title>room</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="insights-panel">
+        <div class="headpanel">
+          <h2>A few insights</h2>
+          <button
+            onclick="
+              document.querySelector('.insights-panel').style.opacity = '0'
+            "
+          >
+            X
+          </button>
+        </div>
+
+        <p>1. Click on the synth — you can play it.</p>
+        <p>2. The robot has something to say.</p>
+        <p>3. You can view some of my projects on the monitor.</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

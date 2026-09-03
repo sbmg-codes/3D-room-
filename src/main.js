@@ -41,7 +41,6 @@ class Application {
       this.debugPanel,
     );
     this.clock = new Clock();
-
     this.init();
   }
 
